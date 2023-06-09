@@ -1,0 +1,19 @@
+{
+    "name": "danielozeh/terminal-africa",
+    "description": "A Laravel Package for Terminal Africa",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DanielOzeh\\TerminalAfrica\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Ozeh",
+            "email": "danielozeh@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0.1"
+    }
+}
