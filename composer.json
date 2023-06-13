@@ -13,6 +13,13 @@
             "email": "danielozeh@gmail.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DanielOzeh\\TerminalAfrica\\TerminalAfricaCoreServiceProvider"
+            ]
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": "^7.0.1"
     }
