@@ -61,7 +61,7 @@ class AddressService {
         try {
             $updateAddress = $this->sendRequest('PUT', "$this->addressUrl/$addressId", [], $data);
             if($updateAddress && $updateAddress['status']) {
-                return $this->sendSuccess($updateAddress['message'], $updateAddress['data']);
+                return $this->sendSuccess($updateAddress['message'], $updateAddress['data'] ?? []);
             }
             return $this->sendError($updateAddress['message'], $updateAddress['data'] ?? []);
         } catch (\Exception $e) {
@@ -104,9 +104,9 @@ class AddressService {
         try {
             $address = $this->sendRequest('GET', "$this->addressUrl/$addressId", [], []);
             if($address && $address['status']) {
-                return $this->sendSuccess($address['message'], $address['data']);
+                return $this->sendSuccess($address['message'], $address['data'] ?? []);
             }
-            return $this->sendError($address['message'], $address['data']);
+            return $this->sendError($address['message'], $address['data'] ?? []);
         } catch (\Exception $e) {
             return $this->internalServerError($e->getMessage());
         }
@@ -123,9 +123,9 @@ class AddressService {
         try {
             $validate = $this->sendRequest('POST', "$this->addressUrl/validate", [], $data);
             if($validate && $validate['status']) {
-                return $this->sendSuccess($validate['message'], $validate['data']);
+                return $this->sendSuccess($validate['message'], $validate['data'] ?? []);
             }
-            return $this->sendError($validate['message'], $validate['data']);
+            return $this->sendError($validate['message'], $validate['data'] ?? []);
         } catch (\Exception $e) {
             $error = $e->getMessage();
             return $this->internalServerError($error);
@@ -146,9 +146,9 @@ class AddressService {
             ];
             $address = $this->sendRequest('POST', "$this->addressUrl/default/sender", [], $data);
             if($address && $address['status']) {
-                return $this->sendSuccess($address['message'], $address['data']);
+                return $this->sendSuccess($address['message'], $address['data'] ?? []);
             }
-            return $this->sendError($address['message'], $address['data']);
+            return $this->sendError($address['message'], $address['data'] ?? []);
         } catch (\Exception $e) {
             return $this->internalServerError($e->getMessage());
         }
@@ -165,9 +165,9 @@ class AddressService {
         try {
             $address = $this->sendRequest('GET', "$this->addressUrl/default/sender", [], []);
             if($address && $address['status']) {
-                return $this->sendSuccess($address['message'], $address['data']);
+                return $this->sendSuccess($address['message'], $address['data'] ?? []);
             }
-            return $this->sendError($address['message'], $address['data']);
+            return $this->sendError($address['message'], $address['data'] ?? []);
         } catch (\Exception $e) {
             return $this->internalServerError($e->getMessage());
         }
