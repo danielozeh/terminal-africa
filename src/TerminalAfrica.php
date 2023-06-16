@@ -5,6 +5,7 @@ use DanielOzeh\TerminalAfrica\Traits\Response;
 use DanielOzeh\TerminalAfrica\Traits\ApiCalls;
 // use DanielOzeh\TerminalAfrica\Utils\Array;
 use DanielOzeh\TerminalAfrica\Services\AddressService as Address;
+use DanielOzeh\TerminalAfrica\Services\CarrierService as Carrier;
 
 /**
  * @author Daniel Ozeh <hello@danielozeh.com.ng>
@@ -123,6 +124,111 @@ class TerminalAfrica {
         try {
             $address = new Address();
             return $address->getDefaultSenderAddress();
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param int $page.
+     * @param int $limit.
+     * @param boolean $active.
+     * @param string type.
+     * @method GET
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function getCarriers($query) {
+        try {
+            $carrier = new Carrier();
+            return $carrier->getCarriers($query);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param string $carrierId
+     * @method GET
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function getCarrier($carrierId) {
+        try {
+            $carrier = new Carrier();
+            return $carrier->getCarrier($carrierId);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param string $carrierId
+     * @param boolean $domestic
+     * @param boolean $regional
+     * @param boolean $international
+     * @method POST
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function enableCarrier($carrierId, $query) {
+        try {
+            $carrier = new Carrier();
+            return $carrier->enableCarrier($carrierId, $query);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param array [string $carrierId,  boolean $domestic, boolean $regional, boolean $international]
+     * @method POST
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function enableMultipleCarrier($data) {
+        try {
+            $carrier = new Carrier();
+            return $carrier->enableMultipleCarrier($data);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param string $carrierId
+     * @param boolean $domestic
+     * @param boolean $regional
+     * @param boolean $international
+     * @method POST
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function disableCarrier($carrierId, $query) {
+        try {
+            $carrier = new Carrier();
+            return $carrier->disableCarrier($carrierId, $query);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param array [string $carrierId,  boolean $domestic, boolean $regional, boolean $international]
+     * @method POST
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function disableMultipleCarrier($data) {
+        try {
+            $carrier = new Carrier();
+            return $carrier->disableMultipleCarrier($data);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
