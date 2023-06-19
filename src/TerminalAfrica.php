@@ -6,6 +6,7 @@ use DanielOzeh\TerminalAfrica\Traits\ApiCalls;
 // use DanielOzeh\TerminalAfrica\Utils\Array;
 use DanielOzeh\TerminalAfrica\Services\AddressService as Address;
 use DanielOzeh\TerminalAfrica\Services\CarrierService as Carrier;
+use DanielOzeh\TerminalAfrica\Services\PackagingService as Packaging;
 
 /**
  * @author Daniel Ozeh <hello@danielozeh.com.ng>
@@ -229,6 +230,87 @@ class TerminalAfrica {
         try {
             $carrier = new Carrier();
             return $carrier->disableMultipleCarrier($data);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param array [int $height, int $length, string $name, string $size_unit, string $type, int $width, int $weight, string $weight_unit]
+     * @method POST
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function createPackaging($data) {
+        try {
+            $packaging = new Packaging();
+            return $packaging->createPackaging($data);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param string $packagingId
+     * @param array [int $height, int $length, string $name, string $size_unit, string $type, int $width, int $weight, string $weight_unit]
+     * @method PUT
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function updatePackaging($packagingId, $data) {
+        try {
+            $packaging = new Packaging();
+            return $packaging->updatePackaging($packagingId, $data);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+     /**
+     * @param int $page.
+     * @param int $limit.
+     * @method GET
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function getPackagings($query) {
+        try {
+            $packaging = new Packaging();
+            return $packaging->getPackagings($query);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param string $packagingId
+     * @method GET
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function getPackaging($packagingId) {
+        try {
+            $packaging = new Packaging();
+            return $packaging->getPackaging($packagingId);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @method GET
+     * 
+     * @return array [boolean status, string message, array data]
+     * @author Daniel Ozeh <hello@danielozeh.com.ng>
+     */
+    public static function terminalDefaultPackaging() {
+        try {
+            $packaging = new Packaging();
+            return $packaging->terminalDefaultPackaging();
         } catch (\Exception $e) {
             return $e->getMessage();
         }
